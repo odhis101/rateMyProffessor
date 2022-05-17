@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<?php 
+
+include ('php/config.php');
+?>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+      <div class = wrapper> 
+        <form action="" method='POST'>
+          <table>
+            <tr>
+              <td>
+                <td> User Name</td>
+                <td><input type ='text' name='name' placeholder="Enter your name"></td>
+              </td>
+              <td>
+                <br>
+                <td>rating</td>
+                <td><input type= number name='number' min="1" max="5" ></td>
+              </td>
+              <td>rating</td>
+                <td><input type= search name='number' min="1" max="5" ></td>
+              </td>
+            </tr>
+              <br>
+              <tr>
+              <td colspan = 2>
+                    <input type=submit name = submit value="submit" class = btn-secondary>
+                    </tr>
+
+            </tr>
+          </table>
+          </form>
+          <!--
+          
+          
+          <?php
+    if(isset($_POST['submit']))
+    {
+         $full_name = $_POST['name'];
+         $number = $_POST['number'];
+
+         $sql = "INSERT INTO login SET 
+            name ='$full_name',
+            rating = $number
+        ";
+
+          $res = mysqli_query($conn, $sql);
+         
+         
+    }
+   
+
+    ?>
+
+  -->
+      </div>
+        <script src="" async defer></script>
+    </body>
+</html>
