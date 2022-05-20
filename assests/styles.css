@@ -48,14 +48,21 @@ body {
     position: absolute;
     bottom: 8px;
     left: 16px;
+    width: 602px;
+    height: auto;
 }
 
-.girl_image {
+.girl img{
+    object-fit: cover;
+    object-position: center;
+}
+
+/*.girl_image {
     position: relative;
     width: 100%;
-    height: 849px;
+    height: 100%;
 }
-
+*/
 .logo {
     position: relative;
     width: auto;
