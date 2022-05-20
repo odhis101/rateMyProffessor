@@ -1,39 +1,4 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assests/styles.css">
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-</head>
-
-<body>
-    <div class="navbar">
-      <div class="logo">
-       <a href="/index.html"> <img src="assests/img/logo.jpg" alt="#" class="logo"></a>
-      </div> 
-       <div class="searchBar">
-            <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder=" Enter Lecs Name" />
-            <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
-                   
-                </button>
-        </div>
-        <div class="nav">
-            <a href='#'> Sing up</a>
-            <a href='#'> login</a>
-        </div>
-        <i class='far fa-user-circle' style='font-size:36px'></i>
-    </div>
+<?php include ('php/navbar.php');?>
 
     <!-- this details have to be the same as the one the user clicked-->
 

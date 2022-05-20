@@ -1,5 +1,6 @@
 <?php 
     session_start();
-    $conn = mysqli_connect('localhost', 'root','','proff')
+    $conn = mysqli_connect('localhost', 'root','','ratemyprroffesor');
+  
 
 ?>

@@ -216,10 +216,12 @@ body {
     text-decoration: underline;
 }
 .center {
+   
     width: 50%;
     margin: 2%;
     margin-left: auto;
     margin-right: auto;
+    border-color: #27ae60;
 }
 
 .desc {
