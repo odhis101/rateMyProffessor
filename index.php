@@ -57,17 +57,6 @@
                         
                         $_SESSION['add']= $search;
                         header('location:ratings.php');
-                    /*
-                        if($row >= 0){
-                            // we have data
-                            while($rows= mysqli_fetch_assoc($result))
-                            {
-                            
-                                echo $id = $rows ['id'];
-                            
-                            
-                        }
-                        */
                     }
                 
                    ?>

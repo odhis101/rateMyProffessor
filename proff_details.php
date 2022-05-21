@@ -2,7 +2,17 @@
 
    
             
-       
+<?php 
+ if(isset($_GET['food_id'])){
+    echo $id = $_GET['id'];
+    
+}
+else{
+    echo 'nah g';
+}
+
+
+?>
       
 
     <!-- this details have to be the same as the one the user clicked-->
