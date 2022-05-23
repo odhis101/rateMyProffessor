@@ -49,7 +49,7 @@
                     </form>
                       </div>
                    <?php 
-                  echo  $sql = "SELECT * FROM professors ";
+               
                    if(isset($_POST['searchQuerySubmit'])){
                         $search = $_POST['searchQueryInput'];
                    
