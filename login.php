@@ -17,10 +17,7 @@
     <form action="" method ="POST">
         <h3> Admin Login Here</h3>
         <?php 
-         if(isset($_SESSION['login'])){
-            echo $_SESSION['login'];
-            unset($_SESSION['login']);
-         }
+   
          if(isset($_SESSION['no-login-message'])){
             echo $_SESSION['no-login-message'];//'no-login-message'ing session message
             unset($_SESSION['no-login-message']);//removing session message
@@ -55,30 +52,34 @@
 if(isset($_POST['submit'])){
     
     // process login 
-      $username=$_POST['username'];
-      $password=md5($_POST['password']);
+      $name=$_POST['username'];
+      $password=$_POST['password'];
    
-     $sql ="SELECT * FROM tbl_admin WHERE username ='$username' AND password = '$password'";
-     
+     $sql ="SELECT * FROM users WHERE name ='$name' AND password = '$password'";
+     echo $sql;
      // execute the query
      $res =mysqli_query($conn,$sql);
      // count rows to check if the usr exists 
     $count=mysqli_num_rows($res);
-    
+    echo $res;
+    /*
     if($count==1){
         // at least one user
+        echo 'success';
         $_SESSION['login']='<div class = "success">login succesfull </div>';
         $_SESSION['user']=$username; // to check whether the user is logged in or not and log out will unset it   
         
-        header("Location:".HOMEURL."admin/");
+        header("Location:"."index.php");
    
     } 
     else{
+        echo 'sike';
         //user not available 
         $_SESSION['login']='<div class = "error">username and password did not match </div>';
        // header("Location:".HOMEURL."admin/login.php");
 
     }
+    */
     }
    
 

@@ -19,7 +19,12 @@
     </head>
 
     <body>
-        <?php include_once("php/config.php"); ?>
+        <?php include_once("php/config.php"); 
+        if(isset($_SESSION['login'])){
+            echo $_SESSION['login'];
+            unset($_SESSION['login']);
+         }
+         ?>
         <section class="home_page">
 
         
