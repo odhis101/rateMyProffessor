@@ -32,7 +32,7 @@
       
             <div class="home_nav">
                 <a href ='#'> Sign up</a>
-                 <a href ='#'> login</a>
+                <a href='login.php'> login</a>
             </div>
             <div class="girl">
                 <img src="assests/img/girl2.png" alt ='joshua its not working ' class="girl_image">

@@ -5,6 +5,6 @@
         // user is not logged in 
         //redirect to login page with message
         $_SESSION['no-login-message']='<div class = "error">Please login to acces Control Panel </div>';
-        header("Location:".HOMEURL."admin/login.php");
+        header("Location:index.php");
     }
 ?>

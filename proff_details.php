@@ -43,7 +43,7 @@ else{
 
 # now here we try and get the data from the users comments 
 
-$sql2 = "SELECT * FROM users";
+$sql2 = "SELECT * FROM users WHERE proff_id = '$id'"; // thats works barely we also need to insert this when the user is rating 
 $res2 = mysqli_query($conn,$sql2);
 $count2 =mysqli_num_rows($res2);
 
@@ -59,7 +59,9 @@ if($count2 > 0){
        
     }
 }
-
+else{
+  echo 'there is no data available';
+}
        ?>
 
 

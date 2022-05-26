@@ -56,20 +56,25 @@ if(isset($_POST['submit'])){
       $password=$_POST['password'];
    
      $sql ="SELECT * FROM users WHERE name ='$name' AND password = '$password'";
-     echo $sql;
      // execute the query
      $res =mysqli_query($conn,$sql);
      // count rows to check if the usr exists 
     $count=mysqli_num_rows($res);
-    echo $res;
-    /*
+
+    
     if($count==1){
         // at least one user
         echo 'success';
         $_SESSION['login']='<div class = "success">login succesfull </div>';
-        $_SESSION['user']=$username; // to check whether the user is logged in or not and log out will unset it   
-        
-        header("Location:"."index.php");
+        $_SESSION['user']=$name; // to check whether the user is logged in or not and log out will unset it   
+        while($rows= mysqli_fetch_assoc($res))
+        {
+           
+            $user_id = $rows ['id'];
+           
+        }
+        $_SESSION['user_id']=$user_id;
+        header("Location:index.php");
    
     } 
     else{
@@ -79,7 +84,7 @@ if(isset($_POST['submit'])){
        // header("Location:".HOMEURL."admin/login.php");
 
     }
-    */
+    
     }
    
 
