@@ -2,10 +2,10 @@
 
     <!-- this details have to be the same as the one the user clicked-->
 <?php
-    $id =$_GET['food_id'];
-    $user_id=$_SESSION['unique_id'];
- $sql = "SELECT * FROM professors WHERE id = '$id'";
- 
+$id =$_GET['food_id'];
+$user_id=$_SESSION['unique_id'];
+$sql = "SELECT * FROM professors WHERE id = '$id'";
+
 
  $res = mysqli_query($conn,$sql);
 

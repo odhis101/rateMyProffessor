@@ -11,7 +11,9 @@ echo $_SESSION['unique_id'];
  
 
  $res = mysqli_query($conn,$sql);
-
+ $sql3 = "SELECT AVG(rating) AS avg FROM ratings where proff_id =  $id ";
+ $avg =  mysqli_query($conn, $sql3);
+ $row3 = mysqli_fetch_assoc($avg);
 
 if($res== true){
      $count = mysqli_num_rows($res);
@@ -33,7 +35,7 @@ else{
 
  <div class="box_two">
         <div class="box-center">
-            <div class="rating_two"> 20</div> <!-- here we will just use math get the total and divide it by the number 
+            <div class="rating_two"> <?php echo $row2['avg']; ?>  ?></div> <!-- here we will just use math get the total and divide it by the number 
             something like sql select where proff_id = id then get the sum of the ratings and divide it by the number -->
         </div>
         <div class="proff_name">
@@ -57,6 +59,7 @@ if($count2 > 0){
         $name2 = $rows ['username'];
         $ratings = $rows['rating'];
         $comments = $rows['comments'];
+        
         
        
 ?>
