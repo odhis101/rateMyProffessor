@@ -35,7 +35,7 @@ else{
 
  <div class="box_two">
         <div class="box-center">
-            <div class="rating_two"> <?php echo $row2['avg']; ?>  ?></div> <!-- here we will just use math get the total and divide it by the number 
+            <div class="rating_two"> <?php echo $row3['avg']; ?>  ?></div> <!-- here we will just use math get the total and divide it by the number 
             something like sql select where proff_id = id then get the sum of the ratings and divide it by the number -->
         </div>
         <div class="proff_name">
@@ -86,7 +86,7 @@ if($count2 > 0){
                 </div>
                 <!-- here is where the card ends -->
 
-            </div>
+           
         </div>
                 <br>
                
