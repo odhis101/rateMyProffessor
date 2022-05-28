@@ -1,20 +1,68 @@
 <?php include ('php/navbar.php');?>
 
     <!-- this details have to be the same as the one the user clicked-->
+<?php
+    $id =$_GET['food_id'];
+    $user_id=$_SESSION['unique_id'];
+ $sql = "SELECT * FROM professors WHERE id = '$id'";
+ 
+
+ $res = mysqli_query($conn,$sql);
 
 
+if($res== true){
+     $count = mysqli_num_rows($res);
+    if($count==1){
+
+        // get the details
+        //echo 'Admin available';
+        $rows = mysqli_fetch_assoc($res);
+        
+        $name=$rows['name'];
+       
+    }
+}
+else{
+    echo 'fake news';
+}
+$sql2 = "SELECT * FROM users WHERE id = '$user_id'";
+ 
+
+$res2 = mysqli_query($conn,$sql2);
+
+
+if($res== true){
+    $count2 = mysqli_num_rows($res2);
+   if($count2==1){
+
+       // get the details
+       //echo 'Admin available';
+       $rows2 = mysqli_fetch_assoc($res2);
+       
+        $name2=$rows2['name'];
+      
+   }
+}
+else{
+   echo 'fake news';
+}
+?>
+
+<!-- here is where the real code starts -->
     <div class="box_two">
         <div class="box-center">
-            <div class="rating_two"> 20</div>
+        <div class="rating_two"> 70.0005</div>
         </div>
+
         <div class="proff_name">
-            <a href = '/proff_details.html'>Proffesors Names </a>
+            <a href = 'proff_details.php ?food_id=<?php echo $id ?>'><?php echo  $name ?> </a>
             <div class="comments">
                 <p > Your Ratings</p>
             </div>
           
    <!-- here is where our codee should go  -->
    <div class="container">
+   <form action ='' method="POST">
     <div class="feedback">
       <div class="star_rating">
         <input type="radio" name="rating" value="5" id="rating-5">
@@ -125,24 +173,50 @@
     <div class="col-md-10 col-lg-8 m-auto">
        <div class="bg-white rounded-3 shadow-sm p-4 mb-4">
           <!-- New Comment //-->
-
+          
              <div class="flex-grow-1">
                 <div class="form-floating mb-3">
                    <input class="form-control w-100 my-comment"
                              placeholder="Leave a comment here"
-                             style="height:7rem;"></input>
+                             style="height:7rem;"
+                             name = comment></input>
                    <label for="my-comment">Leave a comment here</label>
                 </div>
                 <div class="hstack justify-content-end gap-2">
-                   <button class="btn btn-sm btn-link link-secondary text-uppercase">cancel</button>
-                   <button class="btn btn-sm btn-primary text-uppercase">comment</button>
+                   <button class="btn btn-sm btn-primary text-uppercase" type=submit name =submit>comment</button>
                 </div>
           </div>
        </div>
- 
+       </form>
         
        </div>
-    <script src="assests/rating.js" async defer></script>
-</body>
 
+       <?php
+       if(isset($_POST['submit'])){
+         $comment= $_POST['comment'];
+
+        if(isset($_POST['rating'])){
+          // get the value from form
+          $rating=$_POST['rating'] *20;
+        }
+        else{
+          // set the default value
+           $rating =0;
+         } 
+         $sql = "INSERT INTO ratings SET 
+         rating = $rating,
+         user_id = $user_id,
+         proff_id = $id,
+         comments = '$comment',
+         username = '$name2'
+         ";
+        
+         $res= mysqli_query($conn,$sql);
+         
+       } 
+        
+
+        ?>
+    <script src="assests/scripts/rating.js" async defer></script>
+</body>
 </html>

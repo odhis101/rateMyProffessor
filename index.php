@@ -11,7 +11,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assests/styles.css">
+        <link rel="stylesheet" href="assests/styles/styles.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
       
@@ -20,10 +20,31 @@
 
     <body>
         <?php include_once("php/config.php"); 
-        if(isset($_SESSION['login'])){
-            echo $_SESSION['login'];
-            unset($_SESSION['login']);
-         }
+        if (!isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
+            header('location: login.php');
+        }
+    
+        $id =$_SESSION['unique_id'];
+        $sql = "SELECT * FROM users WHERE id =$id ";
+        $res = mysqli_query($conn,$sql);
+
+
+        if($res== true){
+             $count = mysqli_num_rows($res);
+            if($count==1){
+        
+                // get the details
+                //echo 'Admin available';
+                $rows = mysqli_fetch_assoc($res);
+                
+                echo $name=$rows['name'];
+               
+            }
+        }
+        else{
+            echo 'fake news';
+        }
+
          ?>
         <section class="home_page">
 
@@ -56,8 +77,9 @@
                    <?php 
                
                    if(isset($_POST['searchQuerySubmit'])){
-                        $search = $_POST['searchQueryInput'];
-                   
+                       echo 'hello';
+                        echo $search = $_POST['searchQueryInput'];
+
                        
                         
                         $_SESSION['add']= $search;
@@ -69,6 +91,6 @@
             
             </div>
   
-        <script src="" async defer></script>
+        <script src="assests/test.js" async defer></script>
     </body>
 </html>
