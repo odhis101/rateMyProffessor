@@ -1,4 +1,6 @@
-<?php include('php/config.php')?>
+<?php 
+session_start();
+include('php/config.php')?>
 
 <html>
     <head>

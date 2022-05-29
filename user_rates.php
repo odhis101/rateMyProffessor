@@ -1,4 +1,19 @@
-<?php include ('php/navbar.php');?>
+<?php 
+
+ 
+    session_start();
+    if (!isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
+       header("location: login.php");
+       
+
+    }
+    else{
+        include('php/navbar_log.php');
+
+
+    
+
+?>
 
     <!-- this details have to be the same as the one the user clicked-->
 <?php
@@ -192,6 +207,7 @@ else{
        </div>
 
        <?php
+       }
        if(isset($_POST['submit'])){
          $comment= $_POST['comment'];
 

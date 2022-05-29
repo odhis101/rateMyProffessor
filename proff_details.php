@@ -1,11 +1,14 @@
-<?php include ('php/navbar.php');?>
+
+<?php
+session_start();
+ include ('php/navbar.php');?>
 
    
             
 <?php 
 
 # this is the sql for getting the professors name and maybe his average rating 
-echo $_SESSION['unique_id'];
+
  $id =$_GET['food_id'];
  $sql = "SELECT * FROM professors WHERE id = '$id'";
  
