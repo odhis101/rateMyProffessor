@@ -1,14 +1,26 @@
-<?php include ('php/navbar.php');?>
+<?php 
+
+    include ('php/navbar.php');
+    if (!isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
+        echo 'we are here ';
+
+    }
+    else{
+        echo 'this is';
+    }
+
+?>
 <!-- now we have the details of the search -->
 <section class="ratings">
-      
+   
+ 
       <?php
       
-      echo $_SESSION['unique_id'];
-         $search = $_SESSION["add"];
+        $_SESSION['unique_id'];
+        $search = $_SESSION["add"];
      
-        $sql = "SELECT * FROM professors WHERE name LIKE'%{$search}'";
-   
+        $sql = "SELECT * FROM professors WHERE name LIKE'%$search%'";
+        echo $sql;
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_assoc($result);
       
@@ -34,12 +46,13 @@
                 </div>
             <div class="desc">
                 <a href='proff_details.php?food_id=<?php echo $id ?>'> <?php echo $name ?></a>
-                <p class="price">KSh 150</p>
+               <!-- <p class="price">KSh 150</p>-->
 
                 <br>
 
             </div>
             </div>
+          
 <?php
 
             
@@ -52,7 +65,7 @@
 
       ?>
 
-  
+</div>
         
         <div class="center">
         <p> Professor not availables <a class="addproff" href="">Add proff</a>

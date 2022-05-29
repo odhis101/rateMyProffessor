@@ -20,7 +20,7 @@ continueBtn.onclick = () =>{
                
               
                if(data == 1 ){ 
-                location.href ='ratings.php'
+                location.href ='index.php'
                 
                }else{
             

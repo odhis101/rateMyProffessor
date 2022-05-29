@@ -77,12 +77,12 @@
                    <?php 
                
                    if(isset($_POST['searchQuerySubmit'])){
-                       echo 'hello';
-                        echo $search = $_POST['searchQueryInput'];
+                     
+                         $search = $_POST['searchQueryInput']; // getting the search inputs 
 
-                       
                         
-                        $_SESSION['add']= $search;
+                        
+                        $_SESSION['add']= $search; // this moves the search data from the index page to load the search query in the redirected page 
                         header('location:ratings.php');
                     }
                 
