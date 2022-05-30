@@ -62,7 +62,7 @@ $count4 = mysqli_num_rows($res4);
     $avg = mysqli_query($conn,$sql5);
     $row3 = mysqli_fetch_assoc($avg);
  
-    echo $row3['avg'] + 1;
+   
     $res2 = mysqli_query($conn,$sql2);
 
 
@@ -254,7 +254,7 @@ $count4 = mysqli_num_rows($res4);
          #header ("Location:proff_details.php?food_id=2");
          ?>
          <script type="text/javascript">
-          window.location.href = 'http://localhost/rateMyProffessor/proff_details.php?food_id=<?php echo $id; ?>';
+          window.location.href = 'http://localhost:81/rateMyProfessor2/proff_details.php?food_id<?php echo $id; ?>';
           </script>
           <?php
        } 
