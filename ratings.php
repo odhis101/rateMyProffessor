@@ -20,7 +20,7 @@
         $search = $_SESSION["add"];
      
         $sql = "SELECT * FROM professors WHERE name LIKE'%$search%'";
-        echo $sql;
+        
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_assoc($result);
       

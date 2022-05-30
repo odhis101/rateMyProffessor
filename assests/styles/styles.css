@@ -10,6 +10,8 @@
     --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
 }
 html { overflow-y: auto; }
+
+
 * {
     font-family: 'poppins', sans-serif;
     margin: 0;
@@ -39,10 +41,26 @@ body {
     color: var(--black)
 }
 
+li:hover {
+	background: red;
+	cursor: pointer;
+}
+
+ul li ul {
+	background: orange;
+  opacity: 0;
+  min-width: 5rem;
+	position: absolute;
+  transition: all 0.5s ease;
+  margin-top: 10rem;
+	left: 0;
+  display: none;
+}
 .navbar {
     background: var(--white);
     height: 70px;
 }
+
 
 .girl {
     position: absolute;

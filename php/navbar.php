@@ -87,6 +87,7 @@ include('login-check.php');
                   <a href='#'> Sing up</a>
                   <a href='login.php'> login</a>
               </div>
+            
               <i class='far fa-user-circle' style='font-size:36px'></i>
           </div>
      

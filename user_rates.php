@@ -1,11 +1,32 @@
 <?php include ('php/navbar.php');?>
 
+
     <!-- this details have to be the same as the one the user clicked-->
 <?php
 $id =$_GET['food_id'];
 $user_id=$_SESSION['unique_id'];
-$sql = "SELECT * FROM professors WHERE id = '$id'";
 
+if (!isset($$_SESSION['unique_id'])){
+  header('Location:login.php');
+}
+
+# run a sql query to getting proff_id and user_id if it returns empty we can continue 
+
+else{
+
+
+
+$sql4="SELECT * FROM ratings WHERE user_id = $user_id AND proff_id = $id";
+$res4=mysqli_query($conn,$sql4);
+$count4 = mysqli_num_rows($res);
+
+if ($count4>0){
+  $_SESSION["user_message"] = "You can only rate once";
+header('Location:proff_details.php');
+
+}
+
+$sql = "SELECT * FROM professors WHERE id = '$id'";
 
  $res = mysqli_query($conn,$sql);
 
@@ -19,6 +40,7 @@ if($res== true){
         $rows = mysqli_fetch_assoc($res);
         
         $name=$rows['name'];
+
        
     }
 }
@@ -214,6 +236,7 @@ else{
          $res= mysqli_query($conn,$sql);
          
        } 
+      }
         
 
         ?>

@@ -6,6 +6,7 @@
 
 # this is the sql for getting the professors name and maybe his average rating 
 echo $_SESSION['unique_id'];
+echo $_SESSION["user_message"];
  $id =$_GET['food_id'];
  $sql = "SELECT * FROM professors WHERE id = '$id'";
  
