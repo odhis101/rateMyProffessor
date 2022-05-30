@@ -3,6 +3,7 @@
 
   session_start();
     include_once 'config.php';
+    # this is basic confirmation of user and password matches db
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     

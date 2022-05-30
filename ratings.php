@@ -16,14 +16,14 @@
    
  
       <?php
-        if (isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
+        if (isset($_SESSION['unique_id'])){ // checking if the user has logged in but this code is for debugging purposes
             echo $id =$_SESSION['unique_id'];
      
          }
        
         $search = $_SESSION["add"];
      
-        $sql = "SELECT * FROM professors WHERE name LIKE'%$search%'";
+        $sql = "SELECT * FROM professors WHERE name LIKE'%$search%'"; # this is the search that we got from index.php
         
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_assoc($result);
@@ -51,7 +51,7 @@
                 </div>
             <div class="desc">
                 <a href='proff_details.php?food_id=<?php echo $id ?>'> <?php echo $name ?></a>
-               <!-- <p class="price">KSh 150</p>-->
+               <!-- <p class="price">KSh 150</p>--> <!-- try find some content for this gap part -->
 
                 <br>
 
@@ -64,10 +64,6 @@
             
             }   
          }
-    
-
-
-
       ?>
 
 </div>

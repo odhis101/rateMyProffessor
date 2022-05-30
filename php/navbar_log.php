@@ -1,5 +1,5 @@
 <?php
-
+# the use of these two is to have diffrenct navbars betwen logged in and logged out
 
 include ('config.php');
 include('login-check.php'); 

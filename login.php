@@ -19,7 +19,7 @@ include('php/config.php')?>
                 <div class="error-txt"></div>
                 <div class="name-details">
                 <?php
-    if(isset($_SESSION['required'])){
+    if(isset($_SESSION['required'])){ # redirected message if user tries to comment without logging in
         echo $_SESSION['required'];
         unset($_SESSION['required']);
     }
@@ -40,6 +40,6 @@ include('php/config.php')?>
                 </div>
             </form> 
 </body>
-<script src="assests/scripts/login.js" async defer></script> 
+<script src="assests/scripts/login.js" async defer></script> <!-- this is sends it to the script to use xml to send data  -->
 </html>
 

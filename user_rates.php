@@ -1,70 +1,87 @@
 <?php 
 
+ # this is the messiest code i have done in a while sorry :)  
+    session_start();
+    if (!isset($_SESSION['unique_id'])){ // if he hasnt signed in he cant access this page
+     
+      $_SESSION["required"] = "To rate you are required to login";
+       header("location: login.php");
+       
+
+
+    }
+    else{ # this can get confusing if the if statement is false load eveyrthing below here 
+        include('php/navbar_log.php');
+
+
+    
+
+?>
+
+
+<?php
+$id =$_GET['food_id'];
+$user_id=$_SESSION['unique_id'];
+
+
+
+# run a sql query to getting proff_id and user_id if it returns empty we can continue 
+
+
+
+
+
+$sql4="SELECT * FROM ratings WHERE user_id = $user_id AND proff_id = $id";
+$res4=mysqli_query($conn,$sql4);
+$sql = "SELECT * FROM professors WHERE id = '$id'";
+$res = mysqli_query($conn,$sql);
+$count4 = mysqli_num_rows($res4);
+ if ($count4>0){
+   $_SESSION["user_message"] = "You can only rate once";
+   header('Location:proff_details.php?food_id='.$id);
  
-session_start();
-if (!isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
-  
-  /* $_SESSION["required"] = "To rate you are required to login";
-    header("location: login.php");
-    */
-  echo 'why';
+ }
+ else{
+   # user has not rated
+  if($res== true){ 
+      $count = mysqli_num_rows($res);
+      if($count==1){
 
+       // get the details
+       //echo 'Admin available';
+       $rows = mysqli_fetch_assoc($res);
+       
+       $name=$rows['name'];
+
+      
+   }
 }
-# we have verified the user is already logged in
-else{
-    include('php/navbar_log.php');
-    $id =$_GET['food_id'];
-    $user_id=$_SESSION['unique_id'];
 
-
-
-    # run a sql query to getting proff_id and user_id if it returns empty we can continue 
-    $sql="SELECT * FROM ratings WHERE user_id = $user_id AND proff_id = $id";
-    $res=mysqli_query($conn,$sql);
-    $res = mysqli_query($conn,$sql);
-    $count4 = mysqli_num_rows($res);
-    if ($count4>0){ # this disables the user from rating multiple times
-      $_SESSION["user_message"] = "You can only rate once";
-      header('Location:proff_details.php?food_id='.$id);
-    } 
-    if($res== true){  # get
-        $count = mysqli_num_rows($res);
-        if($count==1){
-
-            // get the details
-            //echo 'Admin available';
-            $rows = mysqli_fetch_assoc($res);
-            
-            $name=$rows['name'];
-
-          
-        }
-    }
-    else{
-        echo 'fake news';
-    }
     $sql2 = "SELECT * FROM users WHERE id = '$user_id'";
-    echo $row3['avg'];
+    $sql5 = "SELECT AVG(rating) AS avg FROM ratings where proff_id =  $id ";
+    $avg = mysqli_query($conn,$sql5);
+    $row3 = mysqli_fetch_assoc($avg);
+ 
+    echo $row3['avg'] + 1;
     $res2 = mysqli_query($conn,$sql2);
 
 
     if($res== true){
-        $count2 = mysqli_num_rows($res2);
+      $count2 = mysqli_num_rows($res2);
       if($count2==1){
 
           // get the details
           //echo 'Admin available';
           $rows2 = mysqli_fetch_assoc($res2);
           
-            $name2=$rows2['name'];
-          
-          
+          $name2=$rows2['name'];
+        
+        
       }
     }
-    else{
-      echo 'fake news';
-    }
-    ?>
+ }
+
+?>
 
 <!-- here is where the real code starts -->
     <div class="box_two">
@@ -197,7 +214,7 @@ else{
                    <input class="form-control w-100 my-comment"
                              placeholder="Leave a comment here"
                              style="height:7rem;"
-                             name = comment></input>
+                             name = comment requred> </input>
                    <label for="my-comment">Leave a comment here</label>
                 </div>
                 <div class="hstack justify-content-end gap-2">
@@ -222,6 +239,7 @@ else{
           // set the default value
            $rating =0;
          } 
+         
          $sql = "INSERT INTO ratings SET 
          rating = $rating,
          user_id = $user_id,
@@ -231,9 +249,14 @@ else{
          ";
         
          $res= mysqli_query($conn,$sql);
-         $_SESSION["sta"] = "You can only rate once";
-        header('Location:proff_details.php?food_id='.$id);
          
+         $_SESSION["successful"] = "You have successfully submittef your rating ";
+         #header ("Location:proff_details.php?food_id=2");
+         ?>
+         <script type="text/javascript">
+          window.location.href = 'http://localhost/rateMyProffessor/proff_details.php?food_id=<?php echo $id; ?>';
+          </script>
+          <?php
        } 
       
         

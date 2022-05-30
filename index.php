@@ -59,7 +59,8 @@
         
         
         <?php 
-             if (!isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
+        # so this condition checks wether the user has logged 
+             if (!isset($_SESSION['unique_id'])){ // show sign up and login cause user is not defined 
                 ?>
                 <div class = wrapper>
                 <div class="home_nav">
@@ -71,6 +72,7 @@
         <?php
              }
              else{
+                 # user is defined and logged in
                  ?>
            <div class = wrapper>
                 <div class="home_nav">

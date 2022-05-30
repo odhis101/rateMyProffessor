@@ -15,7 +15,7 @@ else{
 <?php 
 
 # this is the sql for getting the professors name and maybe his average rating 
- $_SESSION['unique_id'];
+
 
  $id =$_GET['food_id'];
  $sql = "SELECT * FROM professors WHERE id = '$id'";
@@ -49,6 +49,10 @@ else{
     if(isset($_SESSION['user_message'])){
         echo $_SESSION['user_message'];
         unset($_SESSION['user_message']);
+    }
+    if(isset($_SESSION['successful'])){
+        echo $_SESSION['successful'];
+        unset($_SESSION['successful']);
     }
     ?>
         <div class="box-center">
@@ -120,20 +124,7 @@ else{
 }
        ?>
 
-
-
-      
-
     <!-- this details have to be the same as the one the user clicked-->
-
-
-   
-
-              
-                <!-- here is where the card ends -->
-
-           
-                <!-- here is where the card ends -->
             
        <br>
                 <p> Whant to make a comment <a class="addproff" href="user_rates.php?food_id=<?php echo $id ?>">feel free</a>
