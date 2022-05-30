@@ -19,42 +19,72 @@
     </head>
 
     <body>
-        <?php include_once("php/config.php"); 
-        if (!isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
-            header('location: login.php');
-        }
-    
-        $id =$_SESSION['unique_id'];
-        $sql = "SELECT * FROM users WHERE id =$id ";
-        $res = mysqli_query($conn,$sql);
-
-
-        if($res== true){
-             $count = mysqli_num_rows($res);
-            if($count==1){
+        <?php 
+        session_start();
+        include_once("php/config.php"); 
         
-                // get the details
-                //echo 'Admin available';
-                $rows = mysqli_fetch_assoc($res);
-                
-                echo $name=$rows['name'];
-               
-            }
+        if (!isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
+            #header('location: login.php');
+
         }
+        
         else{
-            echo 'fake news';
+            $id =$_SESSION['unique_id'];
+            $sql = "SELECT * FROM users WHERE id =$id ";
+            $res = mysqli_query($conn,$sql);
+    
+    
+            if($res== true){
+                 $count = mysqli_num_rows($res);
+                if($count==1){
+            
+                    // get the details
+                    //echo 'Admin available';
+                    $rows = mysqli_fetch_assoc($res);
+                    
+                     $name=$rows['name'];
+                   
+                }
+            }
+            else{
+                echo 'fake news';
+            }
+            
         }
+       
 
          ?>
         <section class="home_page">
 
         
-        <div class = wrapper>
-      
-            <div class="home_nav">
+        
+        <?php 
+             if (!isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
+                ?>
+                <div class = wrapper>
+                <div class="home_nav">
                 <a href ='#'> Sign up</a>
                 <a href='login.php'> login</a>
+
             </div>
+        
+        <?php
+             }
+             else{
+                 ?>
+           <div class = wrapper>
+                <div class="home_nav">
+                <a href='php/logout.php'> Logout</a>
+                <i class='far fa-user-circle' style='font-size:36px'></i>
+            </div>
+        
+                  <?php
+             }
+
+?>
+
+
+        
             <div class="girl">
                 <img src="assests/img/girl2.png" alt ='joshua its not working ' class="girl_image">
                

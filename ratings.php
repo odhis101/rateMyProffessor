@@ -1,12 +1,13 @@
 <?php 
 
-    include ('php/navbar.php');
+ 
+    session_start();
     if (!isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
-        echo 'we are here ';
+       include('php/navbar.php');
 
     }
     else{
-        echo 'this is';
+        include('php/navbar_log.php');
     }
 
 ?>
@@ -15,8 +16,11 @@
    
  
       <?php
-      
-        $_SESSION['unique_id'];
+        if (isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
+            echo $id =$_SESSION['unique_id'];
+     
+         }
+       
         $search = $_SESSION["add"];
      
         $sql = "SELECT * FROM professors WHERE name LIKE'%$search%'";
@@ -24,11 +28,12 @@
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_assoc($result);
       
-      
-        if($row >= 0){
-            // we have data
-            while($rows= mysqli_fetch_assoc($result))
+  
+        if($row > 0){
+            
+            while($rows=mysqli_fetch_assoc($result))
             {
+              
             
                  $id = $rows ['id'];
                  $name = $rows ['name'];  

@@ -1,4 +1,6 @@
-<?php include('php/config.php')?>
+<?php 
+session_start();
+include('php/config.php')?>
 
 <html>
     <head>
@@ -12,10 +14,17 @@
     <div class="wrapper">
         <section class="form login">
             <header> Realtime chat app </header>
+    
             <form action="#">
                 <div class="error-txt"></div>
                 <div class="name-details">
-            
+                <?php
+    if(isset($_SESSION['required'])){
+        echo $_SESSION['required'];
+        unset($_SESSION['required']);
+    }
+    ?>
+  
                     <div class="field input">
                         <lable>Email Address: </lable>
                         <input type="text" name= 'email' placeholder="Email Address">

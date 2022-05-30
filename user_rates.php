@@ -1,79 +1,75 @@
-<?php include ('php/navbar.php');?>
+<?php 
 
-
-    <!-- this details have to be the same as the one the user clicked-->
-<?php
-$id =$_GET['food_id'];
-$user_id=$_SESSION['unique_id'];
-
-if (!isset($$_SESSION['unique_id'])){
-  header('Location:login.php');
-}
-
-# run a sql query to getting proff_id and user_id if it returns empty we can continue 
-
-else{
-
-
-
-$sql4="SELECT * FROM ratings WHERE user_id = $user_id AND proff_id = $id";
-$res4=mysqli_query($conn,$sql4);
-$count4 = mysqli_num_rows($res);
-
-if ($count4>0){
-  $_SESSION["user_message"] = "You can only rate once";
-header('Location:proff_details.php');
-
-}
-
-$sql = "SELECT * FROM professors WHERE id = '$id'";
-
- $res = mysqli_query($conn,$sql);
-
-
-if($res== true){
-     $count = mysqli_num_rows($res);
-    if($count==1){
-
-        // get the details
-        //echo 'Admin available';
-        $rows = mysqli_fetch_assoc($res);
-        
-        $name=$rows['name'];
-
-       
-    }
-}
-else{
-    echo 'fake news';
-}
-$sql2 = "SELECT * FROM users WHERE id = '$user_id'";
  
+session_start();
+if (!isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
+  
+  /* $_SESSION["required"] = "To rate you are required to login";
+    header("location: login.php");
+    */
+  echo 'why';
 
-$res2 = mysqli_query($conn,$sql2);
-
-
-if($res== true){
-    $count2 = mysqli_num_rows($res2);
-   if($count2==1){
-
-       // get the details
-       //echo 'Admin available';
-       $rows2 = mysqli_fetch_assoc($res2);
-       
-        $name2=$rows2['name'];
-      
-   }
 }
+# we have verified the user is already logged in
 else{
-   echo 'fake news';
-}
-?>
+    include('php/navbar_log.php');
+    $id =$_GET['food_id'];
+    $user_id=$_SESSION['unique_id'];
+
+
+
+    # run a sql query to getting proff_id and user_id if it returns empty we can continue 
+    $sql="SELECT * FROM ratings WHERE user_id = $user_id AND proff_id = $id";
+    $res=mysqli_query($conn,$sql);
+    $res = mysqli_query($conn,$sql);
+    $count4 = mysqli_num_rows($res);
+    if ($count4>0){ # this disables the user from rating multiple times
+      $_SESSION["user_message"] = "You can only rate once";
+      header('Location:proff_details.php?food_id='.$id);
+    } 
+    if($res== true){  # get
+        $count = mysqli_num_rows($res);
+        if($count==1){
+
+            // get the details
+            //echo 'Admin available';
+            $rows = mysqli_fetch_assoc($res);
+            
+            $name=$rows['name'];
+
+          
+        }
+    }
+    else{
+        echo 'fake news';
+    }
+    $sql2 = "SELECT * FROM users WHERE id = '$user_id'";
+    echo $row3['avg'];
+    $res2 = mysqli_query($conn,$sql2);
+
+
+    if($res== true){
+        $count2 = mysqli_num_rows($res2);
+      if($count2==1){
+
+          // get the details
+          //echo 'Admin available';
+          $rows2 = mysqli_fetch_assoc($res2);
+          
+            $name2=$rows2['name'];
+          
+          
+      }
+    }
+    else{
+      echo 'fake news';
+    }
+    ?>
 
 <!-- here is where the real code starts -->
     <div class="box_two">
         <div class="box-center">
-        <div class="rating_two"> 70.0005</div>
+        <div class="rating_two"><?php echo $row3['avg'];?> </div>
         </div>
 
         <div class="proff_name">
@@ -214,6 +210,7 @@ else{
        </div>
 
        <?php
+       }
        if(isset($_POST['submit'])){
          $comment= $_POST['comment'];
 
@@ -234,9 +231,11 @@ else{
          ";
         
          $res= mysqli_query($conn,$sql);
+         $_SESSION["sta"] = "You can only rate once";
+        header('Location:proff_details.php?food_id='.$id);
          
        } 
-      }
+      
         
 
         ?>

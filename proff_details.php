@@ -1,12 +1,22 @@
-<?php include ('php/navbar.php');?>
 
-   
-            
+<?php 
+
+ 
+session_start();
+if (!isset($_SESSION['unique_id'])){ // if he doesn't have a unique id he is redirected
+   include('php/navbar.php');
+
+}
+else{
+    include('php/navbar_log.php');
+}
+
+?>       
 <?php 
 
 # this is the sql for getting the professors name and maybe his average rating 
-echo $_SESSION['unique_id'];
-echo $_SESSION["user_message"];
+ $_SESSION['unique_id'];
+
  $id =$_GET['food_id'];
  $sql = "SELECT * FROM professors WHERE id = '$id'";
  
@@ -35,7 +45,14 @@ else{
 ?>
 
  <div class="box_two">
+ <?php
+    if(isset($_SESSION['user_message'])){
+        echo $_SESSION['user_message'];
+        unset($_SESSION['user_message']);
+    }
+    ?>
         <div class="box-center">
+      
             <div class="rating_two"> <?php echo $row3['avg']; ?>  ?></div> <!-- here we will just use math get the total and divide it by the number 
             something like sql select where proff_id = id then get the sum of the ratings and divide it by the number -->
         </div>
@@ -66,7 +83,9 @@ if($count2 > 0){
 ?>
 
 <div class="row  d-flex justify-content-center">
+
                 <div class="col-md-8">
+                    
 
                     <div class="headings d-flex justify-content-between align-items-center mb-3">
                     </div>
