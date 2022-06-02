@@ -4,5 +4,5 @@ import requests
 url ='https://www.usiu.ac.ke/faculty/?schl=chandaria-school'
 result = requests.get(url)
 doc = BeautifulSoup(result.text, 'html.parser')
-prices = doc.find_all("div", class_="block")
-print (prices.attrs)
+prices = doc.find("a",class_='menu-column-main linkCont')
+print (prices.contents[-1]) # this gets the name of the proffesor 
