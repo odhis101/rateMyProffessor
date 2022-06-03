@@ -1,8 +1,29 @@
 from bs4 import BeautifulSoup
 import requests 
 # here we will get data from the usiu website 
-url ='https://www.usiu.ac.ke/faculty/?schl=chandaria-school'
-result = requests.get(url)
-doc = BeautifulSoup(result.text, 'html.parser')
-prices = doc.find("a",class_='menu-column-main linkCont')
-print (prices.contents[-1]) # this gets the name of the proffesor 
+
+def get_proffesors_usiu():
+    bus_url ='https://www.usiu.ac.ke/faculty/?schl'
+    result = requests.get(bus_url)
+    doc = BeautifulSoup(result.text, 'html.parser')
+    bussiness_proffs = doc.find_all("a",class_='menu-column-main linkCont')  # this gives the divs with the proffesor names
+    #print (prices.contents[-1]) # this gets the name of the proffesor 
+
+
+    # what needs to happen here is we make a query treating the list_of_proffs as we treated result 
+
+    proffesors = []
+    for i in bussiness_proffs:
+        proffesors.append (i.contents[-1])
+    return (proffesors)
+def get_proffesors_strathmore():
+    bus_url ='https://sbs.strathmore.edu/faculty/'
+    result = requests.get(bus_url)
+    doc = BeautifulSoup(result.text, 'html.parser')
+    bussiness_proffs = doc.find_all("h2",class_='blog-shortcode-post-title entry-title') # this gives the divs with the proffesor names
+    for i in bussiness_proffs:
+       print (i.text)
+
+if __name__ == '__main__':
+   usiu_proffs= get_proffesors_usiu()
+   get_proffesors_strathmore()
